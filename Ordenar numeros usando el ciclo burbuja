@@ -1,0 +1,85 @@
+#Act 5 Ordenamiento por metodo de burbuja
+
+from typing import List
+
+import os
+
+
+#Realizamos una funcion para leer los numeros que el usuario va a introducir
+
+def leer_arreglo(longitud:int) -> List[int]:
+
+arr: List[int] = []
+
+for i in range (longitud):
+
+valor:int = int(input(f"Introduzca el arreglo[{i+1}]: "))
+
+arr.append(valor)
+
+return arr
+
+
+#Esta funcion tiene compo proposito mostrar los numeros previamente colocados en el mismo orden, para que se vea mas limpio el proceso
+
+def mostrar_arreglo(arr:List[int]):
+
+for i in range(len(arr)):
+
+print(f"arr[{i+1}]: ", arr[i])
+
+
+#Esta funcion tiene como proposito crear el bucle de burbuja, ordenar los numeros previamente ingresados y devolverlos
+
+def Bubble_time(arr: List[int]):
+
+for i in range (1, len(arr)):
+
+for j in range (0, len(arr)-1):
+
+if arr[j] > arr[j+1]:
+
+aux = arr[j]
+
+arr[j] = arr[j+1]
+
+arr[j+1] = aux
+
+print (arr)
+
+
+#Esta es la funcion pricipal, primero se define nuestra lista y le pedimos al usuario la longitud de esta
+
+#Posteriormente se llama a la funcion leer_arreglo para que el usuario pueda ingresar los numeros que desea ordenar
+
+#Despues de tener los numeros, se llama a la funcion Bubble_time para que sean ordenados los numeros
+
+#Para culminar, pasamos nuesta lista a una variable auxiliar en donde sera transformada a una string para ser previamente guardada en un archivo
+
+def main():
+
+arr: List[int] = []
+
+longitud: int = int(input("Introduzca la longitud: "))
+
+arr = leer_arreglo(longitud)
+
+mostrar_arreglo(arr)
+
+Bubble_time(arr)
+
+
+NumerosOrdenados = "".join(str(i) for i in arr)
+
+
+f = open("NumerosOrdenados.txt", "w")
+
+f.writelines(NumerosOrdenados)
+
+f.close()
+
+
+#Se llama a la funcion principal para realizar todo el proceso
+
+main()
+
